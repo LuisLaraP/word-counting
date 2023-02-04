@@ -15,7 +15,6 @@ if __name__ == '__main__':
         new_line = document[i].translate(str.maketrans('', '', string.punctuation))
         new_line = new_line.strip().lower()
         document[i] = new_line
-    print(document)
 
     # Count words
     word_counts = {}

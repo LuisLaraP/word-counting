@@ -18,10 +18,16 @@ Por defecto, la salida está ordenada por frecuencia de palabras, de tal manera 
 
 ## Metodología
 
+Cada etapa del proyecto está marcada por una tag de git. Para ir a una versión específica, se usa el comando siguiente:
+
+    git checkout <nombre_de_tag>
+
 ### Primera aproximación
+
+Tag: `v1`
+
+Salidas: `output/1-primera_aprox-alpha.txt`, `output/1-primera_aprox-freq.txt`
 
 La versión más sencilla de este contador de palabras sencillamente extrae las palabras del texto e imprime sus frecuencias en orden descendente.
 
 Antes de extraer las palabras, se hace un preprocesamiento del texto en el cual se cambia todo a letras minúsculas. Esto es porque una palabra sigue siendo la misma independientemente de si está en minúsculas o no. También se elimina toda la puntuación, para hacer más sencillo el tratamiento.
-
-La salida de esta iteración está almacenada en el archivo `output/1-primera_aprox.txt`.

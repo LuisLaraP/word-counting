@@ -10,6 +10,12 @@ Para ejecutar el contador, se debe pasar el archivo a leer como argumento. El ar
 
 La salida del comando es a través de la salida estándar, la cual puede ser redirigida a un archivo.
 
+### Orden de salida
+
+Por defecto, la salida está ordenada por frecuencia de palabras, de tal manera que las más frecuentes aparecen al inicio. Este comportamiento puede controlarse con la opción `--sort`. El valor de esta opción puede ser 'freq' (por defecto), o 'alpha'. Si se elige 'alpha', la salida estará en orden alfabético.
+
+    python3 count_words.py --sort alpha data/raw_text.txt
+
 ## Metodología
 
 ### Primera aproximación

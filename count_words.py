@@ -1,13 +1,27 @@
 #! /usr/bin/env python3
 
+import argparse
 import string
-import sys
 
 if __name__ == '__main__':
-    filename = sys.argv[1]
+    # Argument parser
+    parser = argparse.ArgumentParser(
+        prog='count_words',
+        description='Count words in a text document'
+    )
+    parser.add_argument('filename',
+        help='text file that contains the text to be analyzed'
+    )
+    parser.add_argument('--sort',
+        choices=['alpha', 'freq'],
+        default='freq',
+        help='(default: %(default)s) '
+             'sort order in which the results are to be returned'
+    )
+    args = parser.parse_args()
 
     # Read document
-    with open(filename, 'r') as infile:
+    with open(args.filename, 'r') as infile:
         document = infile.readlines()
 
     # Basic preprocessing
@@ -25,5 +39,9 @@ if __name__ == '__main__':
             word_counts[word] += 1
 
     # Output result
-    for word, cnt in sorted(word_counts.items(), key=lambda x: x[1], reverse=True):
+    if args.sort == 'freq':
+        sort_key = lambda x: (-x[1], x[0])
+    else:
+        sort_key = lambda x: (x[0], -x[1])
+    for word, cnt in sorted(word_counts.items(), key=sort_key):
         print(f'{cnt:4d} - {word}')

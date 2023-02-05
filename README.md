@@ -34,9 +34,9 @@ Antes de extraer las palabras, se hace un preprocesamiento del texto en el cual 
 
 ### Stemmer
 
-Tag: `v1`
+Tag: `v2`
 
-Salidas: `output/1-primera_aprox-alpha.txt`, `output/1-primera_aprox-freq.txt`
+Salidas: `output/2-stemmer-alpha.txt`, `output/2-stemmer-freq.txt`
 
 En la salida de la primera aproximación se observa que existen varias palabras que significan lo mismo, pero están escritas de diferente manera. Puede ser por las diferencias entre singular y plural (p. ej. `amount` y `amounts`), o bien por diferentes formas verbales (p. ej. `consume` y `consuming`). Ya que estas palabras significan lo mismo, es deseable que se cuenten como una sola entidad. Para ello, es necesario extraer la raíz de la palabra, la cual le da significado.
 

@@ -20,6 +20,12 @@ if __name__ == '__main__':
         help='(default: %(default)s) '
              'sort order in which the results are to be returned'
     )
+    parser.add_argument('--stemmer',
+        choices=['on', 'off'],
+        default='on',
+        help='(default: %(default)s) '
+             'turn the Porter stemmer on or off'
+    )
     args = parser.parse_args()
 
     # Read document
@@ -33,13 +39,17 @@ if __name__ == '__main__':
         document[i] = new_line
 
     # Initialize Porter stemmer
-    stemmer = nltk.stem.porter.PorterStemmer()
+    if args.stemmer == 'on':
+        stemmer = nltk.stem.porter.PorterStemmer()
 
     # Count words
     word_counts = {}
     for line in document:
         for word in line.split():
-            stem = stemmer.stem(word)
+            if args.stemmer == 'on':
+                stem = stemmer.stem(word)
+            else:
+                stem = word
             if stem not in word_counts:
                 word_counts[stem] = 0
             word_counts[stem] += 1

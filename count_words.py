@@ -3,6 +3,8 @@
 import argparse
 import string
 
+import nltk
+
 if __name__ == '__main__':
     # Argument parser
     parser = argparse.ArgumentParser(
@@ -30,13 +32,17 @@ if __name__ == '__main__':
         new_line = new_line.strip().lower()
         document[i] = new_line
 
+    # Initialize Porter stemmer
+    stemmer = nltk.stem.porter.PorterStemmer()
+
     # Count words
     word_counts = {}
     for line in document:
         for word in line.split():
-            if word not in word_counts:
-                word_counts[word] = 0
-            word_counts[word] += 1
+            stem = stemmer.stem(word)
+            if stem not in word_counts:
+                word_counts[stem] = 0
+            word_counts[stem] += 1
 
     # Output result
     if args.sort == 'freq':

@@ -31,3 +31,13 @@ Salidas: `output/1-primera_aprox-alpha.txt`, `output/1-primera_aprox-freq.txt`
 La versión más sencilla de este contador de palabras sencillamente extrae las palabras del texto e imprime sus frecuencias en orden descendente.
 
 Antes de extraer las palabras, se hace un preprocesamiento del texto en el cual se cambia todo a letras minúsculas. Esto es porque una palabra sigue siendo la misma independientemente de si está en minúsculas o no. También se elimina toda la puntuación, para hacer más sencillo el tratamiento.
+
+### Stemmer
+
+Tag: `v1`
+
+Salidas: `output/1-primera_aprox-alpha.txt`, `output/1-primera_aprox-freq.txt`
+
+En la salida de la primera aproximación se observa que existen varias palabras que significan lo mismo, pero están escritas de diferente manera. Puede ser por las diferencias entre singular y plural (p. ej. `amount` y `amounts`), o bien por diferentes formas verbales (p. ej. `consume` y `consuming`). Ya que estas palabras significan lo mismo, es deseable que se cuenten como una sola entidad. Para ello, es necesario extraer la raíz de la palabra, la cual le da significado.
+
+Para esta tarea se usó el algoritmo de Porter, el cual solamente funciona en inglés. Éste está implementado en la librería `nltk`, diseñada para procesamiento de texto.

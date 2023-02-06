@@ -41,3 +41,13 @@ Salidas: `output/2-stemmer-alpha.txt`, `output/2-stemmer-freq.txt`
 En la salida de la primera aproximación se observa que existen varias palabras que significan lo mismo, pero están escritas de diferente manera. Puede ser por las diferencias entre singular y plural (p. ej. `amount` y `amounts`), o bien por diferentes formas verbales (p. ej. `consume` y `consuming`). Ya que estas palabras significan lo mismo, es deseable que se cuenten como una sola entidad. Para ello, es necesario extraer la raíz de la palabra, la cual le da significado.
 
 Para esta tarea se usó el algoritmo de Porter, el cual solamente funciona en inglés. Éste está implementado en la librería `nltk`, diseñada para procesamiento de texto.
+
+### Reducción de sinónimos
+
+Tag: `v3`
+
+Salidas: `output/3-sinonimos-alpha.txt`, `output/3-sinonimos-freq.txt`
+
+En el texto dado existen algunos conceptos que requieren de dos palabras para expresar su significado, por ejemplo "junk food". Si estas palabras se extrajeran por separado se perdería este significado. Para atacar este problema se implementó un sistema para reemplazar palabras por otras. Los patrones a reemplazar se dan en un archivo de texto.
+
+El mecanismo para reemplazar sinónimos también puede servir para otros propósitos. Uno de ellos  es arreglar palabras que estén mal escritas o separar contracciones (`didn't` -> `did not`). En cualquier caso, los contenidos del archivo de sinónimos deben ser definidos manualmente a partir del texto que se esté analizando.

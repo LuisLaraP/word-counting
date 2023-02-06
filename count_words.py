@@ -38,6 +38,15 @@ if __name__ == '__main__':
         new_line = new_line.strip().lower()
         document[i] = new_line
 
+    # Read synonyms file
+    synonyms = {}
+    with open('synonyms.txt', 'r') as infile:
+        for line in infile:
+            target, _,  terms = line.partition(':')
+            target = target.strip()
+            for term in terms:
+                synonyms[term.strip()] = target
+
     # Initialize Porter stemmer
     if args.stemmer == 'on':
         stemmer = nltk.stem.porter.PorterStemmer()

@@ -44,8 +44,16 @@ if __name__ == '__main__':
         for line in infile:
             target, _,  terms = line.partition(':')
             target = target.strip()
+            terms = terms.split(',')
             for term in terms:
                 synonyms[term.strip()] = target
+
+    # Replace synonyms
+    for i in range(len(document)):
+        new_line = document[i]
+        for term, repl in synonyms.items():
+            new_line = new_line.replace(term, repl)
+        document[i] = new_line
 
     # Initialize Porter stemmer
     if args.stemmer == 'on':

@@ -31,7 +31,9 @@ if __name__ == '__main__':
         help='path to the synonyms file. '
              'If it is not given, no synonym replacement will be done'
     )
-    parser.add_argument('--'
+    parser.add_argument('--stopwords-file',
+        help='path to the stopwords file. '
+             'If it is not given, no stopwords will be removed'
     )
     args = parser.parse_args()
 
@@ -69,7 +71,7 @@ if __name__ == '__main__':
             exit()
 
     # Read stopwords file
-    with open('stopwords.txt', 'r') as infile:
+    with open(args.stopwords_file, 'r') as infile:
         stopwords = {line.strip() for line in infile if line}
 
     # Initialize Porter stemmer

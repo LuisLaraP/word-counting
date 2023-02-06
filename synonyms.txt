@@ -1,1 +1,2 @@
+french-fries: french fries
 junk-food: junkfood, junk food

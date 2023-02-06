@@ -35,7 +35,6 @@
    2 - reason
    2 - way
    1 - age
-   1 - ate
    1 - avail
    1 - awar
    1 - away
@@ -56,6 +55,7 @@
    1 - discourag
    1 - drink
    1 - easiest
+   1 - eeatd
    1 - extend
    1 - failur
    1 - fatal

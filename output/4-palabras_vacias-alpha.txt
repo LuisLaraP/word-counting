@@ -1,6 +1,5 @@
    1 - age
    5 - amount
-   1 - ate
    1 - avail
    1 - awar
    1 - away
@@ -31,6 +30,7 @@
    2 - easi
    1 - easiest
    7 - eat
+   1 - eeatd
    2 - effect
    2 - exampl
    1 - extend

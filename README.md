@@ -4,9 +4,9 @@ Este es un analizador de texto sencillo en Python. El objetivo es contar las pal
 
 ## Ejecución
 
-Para ejecutar el contador, se debe pasar el archivo a leer como argumento. El archivo proporcionado se encuentra en el directorio `data`.
+Para ejecutar el contador, se debe pasar el archivo a leer como argumento. El texto proporcionado se encuentra en el directorio `data`. Adicionalmente, se puede especificar un archivo de sinónimos con la opción `--syn-file`.
 
-    python3 count_words.py data/raw_text.txt
+    python3 count_words.py --syn-file synonyms.txt data/raw_text.txt
 
 La salida del comando es a través de la salida estándar, la cual puede ser redirigida a un archivo.
 
@@ -51,3 +51,5 @@ Salidas: `output/3-sinonimos-alpha.txt`, `output/3-sinonimos-freq.txt`
 En el texto dado existen algunos conceptos que requieren de dos palabras para expresar su significado, por ejemplo "junk food". Si estas palabras se extrajeran por separado se perdería este significado. Para atacar este problema se implementó un sistema para reemplazar palabras por otras. Los patrones a reemplazar se dan en un archivo de texto.
 
 El mecanismo para reemplazar sinónimos también puede servir para otros propósitos. Uno de ellos  es arreglar palabras que estén mal escritas o separar contracciones (`didn't` -> `did not`). En cualquier caso, los contenidos del archivo de sinónimos deben ser definidos manualmente a partir del texto que se esté analizando.
+
+Esta iteración introduce la opción de especificar un archivo de sinónimos. En este archivo, cada línea se divide en dos secciones, separadas por un caracter `:`. La primera sección es la cadena que será colocada en el texto cada vez que se encuentre un sinónimo. La segunda sección es una lista separada por comas de cadenas que, cuando se encuentren en el texto, serán reemlazadas por la cadena en la primera sección. Si no se especifica ningún archivo de sinónimos, este paso del procesamiento se omite.

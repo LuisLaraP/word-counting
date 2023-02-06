@@ -16,6 +16,12 @@ Por defecto, la salida está ordenada por frecuencia de palabras, de tal manera 
 
     python3 count_words.py --sort alpha data/raw_text.txt
 
+### Reducción de sinónimos
+
+Este script de Python tiene la capacidad de reducir sinónimos en el texto. Para usar esta característica se debe especificar un archivo de sinónimos en la línea de comandos con el argumento `--syn-file`. Si no se especifica ningún archivo, no se realiza la reducción de sinónimos.
+
+En el archivo de sinónimos, cada línea se divide en dos secciones, separadas por un caracter `:`. La primera sección es la cadena que será colocada en el texto cada vez que se encuentre un sinónimo. La segunda sección es una lista separada por comas de cadenas que, cuando se encuentren en el texto, serán reemlazadas por la cadena en la primera sección. Si no se especifica ningún archivo de sinónimos, este paso del procesamiento se omite.
+
 ## Metodología
 
 Cada etapa del proyecto está marcada por una tag de git. Para ir a una versión específica, se usa el comando siguiente:
@@ -51,5 +57,3 @@ Salidas: `output/3-sinonimos-alpha.txt`, `output/3-sinonimos-freq.txt`
 En el texto dado existen algunos conceptos que requieren de dos palabras para expresar su significado, por ejemplo "junk food". Si estas palabras se extrajeran por separado se perdería este significado. Para atacar este problema se implementó un sistema para reemplazar palabras por otras. Los patrones a reemplazar se dan en un archivo de texto.
 
 El mecanismo para reemplazar sinónimos también puede servir para otros propósitos. Uno de ellos  es arreglar palabras que estén mal escritas o separar contracciones (`didn't` -> `did not`). En cualquier caso, los contenidos del archivo de sinónimos deben ser definidos manualmente a partir del texto que se esté analizando.
-
-Esta iteración introduce la opción de especificar un archivo de sinónimos. En este archivo, cada línea se divide en dos secciones, separadas por un caracter `:`. La primera sección es la cadena que será colocada en el texto cada vez que se encuentre un sinónimo. La segunda sección es una lista separada por comas de cadenas que, cuando se encuentren en el texto, serán reemlazadas por la cadena en la primera sección. Si no se especifica ningún archivo de sinónimos, este paso del procesamiento se omite.

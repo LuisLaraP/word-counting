@@ -67,13 +67,17 @@ if __name__ == '__main__':
                     new_line = new_line.replace(term, repl)
                 document[i] = new_line
         except FileNotFoundError:
-            print(f'ERROR: Synonyms file {args.syn_file} not found.', file=sys.stderr)
+            print(f"ERROR: Synonyms file '{args.syn_file}' not found.", file=sys.stderr)
             exit()
 
     # Read stopwords file
     if args.stopwords_file is not None:
-        with open(args.stopwords_file, 'r') as infile:
-            stopwords = {line.strip() for line in infile if line}
+        try:
+            with open(args.stopwords_file, 'r') as infile:
+                stopwords = {line.strip() for line in infile if line}
+        except FileNotFoundError:
+            print(f"ERROR: Stopwords file '{args.stopwords_file}' not found.", file=sys.stderr)
+            exit()
     else:
         stopwords = set()
 

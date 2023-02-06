@@ -4,11 +4,13 @@ Este es un analizador de texto sencillo en Python. El objetivo es contar las pal
 
 ## Ejecución
 
-Para ejecutar el contador, se debe pasar el archivo a leer como argumento. El texto proporcionado se encuentra en el directorio `data`. Adicionalmente, se puede especificar un archivo de sinónimos con la opción `--syn-file`.
+Para empezar, se puede ejecutar el contador de palabras con el siguiente comando:
 
-    python3 count_words.py --syn-file synonyms.txt data/raw_text.txt
+    python3 count_words.py --syn-file synonyms.txt --stopwords-file stopwords.txt data/raw_text.txt
 
 La salida del comando es a través de la salida estándar, la cual puede ser redirigida a un archivo.
+
+Las siguientes secciones explican los argumentos a detalle. La ayuda también puede ser consultada en la línea de comandos con la opción `-h`.
 
 ### Orden de salida
 
@@ -29,6 +31,15 @@ En el archivo de sinónimos, cada línea se divide en dos secciones, separadas p
 Otra capacidad de este script es la eliminación de palabras para que no aparezcan en el resultado. Normalmente se eliminan palabras sin significado, pero este mecanismo se puede utilizar para otros fines. La lista de palabras a eliminar se proporciona mediante un archivo de texto, cuya ruta se especifica con el argumento `--stopwords-file`.
 
     python3 count_words.py --stopwords-file <stopwords_file>
+
+## Consideraciones
+
+Para la construcción de este sistema se siguieron los siguientes principios:
+
+- No se conoce la tarea que se realizará con el resultado de este contador. Por lo tanto, tratar de implementar una solución lo más general posible.
+- El contador de palabras se usará con otros textos, no solamente el que se dio.
+- Ya que el texto dado está en inglés, lo más probable es que otros documentos que se compararán a éste también estarán en inglés. Por lo tanto, este script solamente soporta documentos en inglés.
+- El contador será usado en documentos de muchos temas diferentes.
 
 ## Metodología
 

@@ -22,6 +22,14 @@ Este script de Python tiene la capacidad de reducir sinónimos en el texto. Para
 
 En el archivo de sinónimos, cada línea se divide en dos secciones, separadas por un caracter `:`. La primera sección es la cadena que será colocada en el texto cada vez que se encuentre un sinónimo. La segunda sección es una lista separada por comas de cadenas que, cuando se encuentren en el texto, serán reemlazadas por la cadena en la primera sección. Si no se especifica ningún archivo de sinónimos, este paso del procesamiento se omite.
 
+    python3 count_words.py --syn-file <synonyms_file>
+
+### Palabras vacías
+
+Otra capacidad de este script es la eliminación de palabras para que no aparezcan en el resultado. Normalmente se eliminan palabras sin significado, pero este mecanismo se puede utilizar para otros fines. La lista de palabras a eliminar se proporciona mediante un archivo de texto, cuya ruta se especifica con el argumento `--stopwords-file`.
+
+    python3 count_words.py --stopwords-file <stopwords_file>
+
 ## Metodología
 
 Cada etapa del proyecto está marcada por una tag de git. Para ir a una versión específica, se usa el comando siguiente:
@@ -56,4 +64,10 @@ Salidas: `output/3-sinonimos-alpha.txt`, `output/3-sinonimos-freq.txt`
 
 En el texto dado existen algunos conceptos que requieren de dos palabras para expresar su significado, por ejemplo "junk food". Si estas palabras se extrajeran por separado se perdería este significado. Para atacar este problema se implementó un sistema para reemplazar palabras por otras. Los patrones a reemplazar se dan en un archivo de texto.
 
-El mecanismo para reemplazar sinónimos también puede servir para otros propósitos. Uno de ellos  es arreglar palabras que estén mal escritas o separar contracciones (`didn't` -> `did not`). En cualquier caso, los contenidos del archivo de sinónimos deben ser definidos manualmente a partir del texto que se esté analizando.
+El mecanismo para reemplazar sinónimos también puede servir para otros propósitos. Uno de ellos es arreglar palabras que estén mal escritas o separar contracciones (`didn't` -> `did not`). En cualquier caso, los contenidos del archivo de sinónimos deben ser definidos manualmente a partir del texto que se esté analizando.
+
+### Eliminación de palabras vacías
+
+Finalmente, se puede observar en la salida ordenada por frecuencias que, por lo general, las palabras más comunes carecen de significado. Estas palabras, llamadas palabras vacías, solamente sirven para conectar otras palabras y formar oraciones gramaticalmente correctas. Si se usaran estas palabras para comparar textos, muschos documentos, aunque trataran de cosas completamente diferentes, tendrían demasiadas palabras en común. Por ello en esta iteración se introduce un mecanismo para eliminar las palabras vacías.
+
+La lista de palabras a eliminar se construye manualmente, al igual que la de los sinónimos, y también depende del texto que se esté analizando.

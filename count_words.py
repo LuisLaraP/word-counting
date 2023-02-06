@@ -71,8 +71,11 @@ if __name__ == '__main__':
             exit()
 
     # Read stopwords file
-    with open(args.stopwords_file, 'r') as infile:
-        stopwords = {line.strip() for line in infile if line}
+    if args.stopwords_file is not None:
+        with open(args.stopwords_file, 'r') as infile:
+            stopwords = {line.strip() for line in infile if line}
+    else:
+        stopwords = set()
 
     # Initialize Porter stemmer
     if args.stemmer == 'on':

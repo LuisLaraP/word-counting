@@ -31,6 +31,8 @@ if __name__ == '__main__':
         help='path to the synonyms file. '
              'If it is not given, no synonym replacement will be done'
     )
+    parser.add_argument('--'
+    )
     args = parser.parse_args()
 
     # Read document
@@ -66,6 +68,10 @@ if __name__ == '__main__':
             print(f'ERROR: Synonyms file {args.syn_file} not found.', file=sys.stderr)
             exit()
 
+    # Read stopwords file
+    with open('stopwords.txt', 'r') as infile:
+        stopwords = {line.strip() for line in infile if line}
+
     # Initialize Porter stemmer
     if args.stemmer == 'on':
         stemmer = nltk.stem.porter.PorterStemmer()
@@ -78,6 +84,8 @@ if __name__ == '__main__':
                 stem = stemmer.stem(word)
             else:
                 stem = word
+            if stem in stopwords:
+                continue
             if stem not in word_counts:
                 word_counts[stem] = 0
             word_counts[stem] += 1

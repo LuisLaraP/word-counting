@@ -2,6 +2,7 @@
 
 import argparse
 import string
+import sys
 
 import nltk
 
@@ -26,6 +27,10 @@ if __name__ == '__main__':
         help='(default: %(default)s) '
              'turn the Porter stemmer on or off'
     )
+    parser.add_argument('--syn-file',
+        help='path to the synonyms file. '
+             'If it is not given, no synonym replacement will be done'
+    )
     args = parser.parse_args()
 
     # Read document
@@ -38,22 +43,28 @@ if __name__ == '__main__':
         new_line = new_line.strip().lower()
         document[i] = new_line
 
-    # Read synonyms file
-    synonyms = {}
-    with open('synonyms.txt', 'r') as infile:
-        for line in infile:
-            target, _,  terms = line.partition(':')
-            target = target.strip()
-            terms = terms.split(',')
-            for term in terms:
-                synonyms[term.strip()] = target
+    # Synonym replacement
+    if args.syn_file is not None:
+        try:
+            # Read synonyms file
+            synonyms = {}
+            with open(args.syn_file, 'r') as infile:
+                for line in infile:
+                    target, _,  terms = line.partition(':')
+                    target = target.strip()
+                    terms = terms.split(',')
+                    for term in terms:
+                        synonyms[term.strip()] = target
 
-    # Replace synonyms
-    for i in range(len(document)):
-        new_line = document[i]
-        for term, repl in synonyms.items():
-            new_line = new_line.replace(term, repl)
-        document[i] = new_line
+            # Replace synonyms
+            for i in range(len(document)):
+                new_line = document[i]
+                for term, repl in synonyms.items():
+                    new_line = new_line.replace(term, repl)
+                document[i] = new_line
+        except FileNotFoundError:
+            print(f'ERROR: Synonyms file {args.syn_file} not found.', file=sys.stderr)
+            exit()
 
     # Initialize Porter stemmer
     if args.stemmer == 'on':
